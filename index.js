@@ -8,15 +8,14 @@ const port = 5000;
 app.use(express.json());
 app.use(cors());
 
-const uri = process.env.DATABASE_URI;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.aw2xu1p.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
     deprecationErrors: true,
-  },
+  }
 });
-
 async function run() {
   try {
     await client.connect();
